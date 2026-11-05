@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bili Balance · 工具栏弹窗预览</title>
+    <link rel="stylesheet" href="preview.css">
+  </head>
+  <body>
+    <header><span class="logo">BB</span><strong>工具栏弹窗预览</strong></header>
+    <main class="popup-demo">
+      <p><a href="preview.html">返回悬浮窗预览</a></p>
+      <p class="intro">使用真实的弹窗 HTML、样式与控制器，数据为本地演示数据。</p>
+      <button id="demoContinuous" type="button">演示连续娱乐 25 分钟</button>
+      <iframe id="popupPreview" title="Bili Balance 工具栏弹窗" src="../src/popup/popup.html"></iframe>
+      <p class="notice" id="previewMessage" role="status">通过 node scripts/serve-preview.mjs 启动后打开本页。</p>
+    </main>
+    <script type="module" src="popup-preview.js"></script>
+  </body>
+</html>

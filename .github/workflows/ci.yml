@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run tests and static checks
+        run: node scripts/check.mjs
+      - name: Build the installable extension archive
+        run: node scripts/package.mjs
+      - name: Upload extension archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: bili-balance-extension
+          path: |
+            dist/*.zip
+            dist/*.sha256
+          if-no-files-found: error

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bili Balance</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="identity">
+          <span class="mark" aria-hidden="true">BB</span>
+          <div>
+            <h1>Bili Balance</h1>
+            <p id="dateLabel">今日</p>
+          </div>
+        </div>
+        <span class="status" id="limitState">加载中</span>
+      </header>
+
+      <section class="balance" aria-labelledby="todayHeading">
+        <div class="section-heading">
+          <h2 id="todayHeading">今日观看</h2>
+          <span id="totalTime" class="section-meta">合计 0 秒</span>
+        </div>
+
+        <div class="time-grid">
+          <article class="time-card education">
+            <div class="time-label">
+              <span class="dot" aria-hidden="true"></span>
+              学习
+            </div>
+            <strong id="educationTime">0m</strong>
+            <span id="educationShare" class="time-meta">占观看时长 0%</span>
+          </article>
+
+          <article class="time-card recreation">
+            <div class="time-label">
+              <span class="dot" aria-hidden="true"></span>
+              娱乐
+            </div>
+            <strong id="recreationTime">0m</strong>
+            <span id="recreationShare" class="time-meta">占观看时长 0%</span>
+          </article>
+        </div>
+
+        <div class="budget">
+          <div class="budget-copy">
+            <span>今日娱乐额度</span>
+            <strong id="remainingTime">剩余 90 分钟</strong>
+          </div>
+          <div
+            class="progress"
+            id="progress"
+            role="progressbar"
+            aria-label="娱乐额度使用比例"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <span id="progressBar"></span>
+          </div>
+        </div>
+        <div class="budget-copy session-summary">
+          <span>本次连续娱乐 / 25 分钟提醒</span>
+          <strong id="sessionTime">0 秒</strong>
+        </div>
+        <p id="sessionWarning" class="session-warning" role="status" hidden>已连续娱乐 25 分钟，休息至少 1 分钟再继续吧。</p>
+      </section>
+
+      <section class="current-panel" aria-labelledby="currentHeading">
+        <div class="section-heading">
+          <h2 id="currentHeading">当前视频</h2>
+          <span class="source-label" id="sourceLabel">未检测到</span>
+        </div>
+
+        <div class="empty-state" id="emptyState">
+          <span class="empty-icon" aria-hidden="true"></span>
+          <p>打开 B站视频，在页面右下角也能使用悬浮窗。</p>
+        </div>
+
+        <div id="currentContent" hidden>
+          <p class="topic" id="topic">未检测到主题</p>
+          <p class="page-title" id="pageTitle"></p>
+          <div class="tags" id="tagList"></div>
+
+          <div class="category-row">
+            <span class="control-label">计入分类</span>
+            <div class="segmented" role="group" aria-label="视频分类">
+              <button
+                id="educationButton"
+                type="button"
+                aria-pressed="false"
+              >
+                学习
+              </button>
+              <button
+                id="recreationButton"
+                type="button"
+                aria-pressed="false"
+              >
+                娱乐
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="settings-panel" aria-labelledby="limitHeading">
+        <div class="settings-copy">
+          <h2 id="limitHeading">每日娱乐限额</h2>
+          <p>0 仅关闭每日提醒；连续娱乐 25 分钟仍会提醒。</p>
+        </div>
+        <form id="limitForm" class="limit-form">
+          <label class="sr-only" for="limitInput">限额（分钟）</label>
+          <input
+            id="limitInput"
+            name="limit"
+            type="number"
+            min="0"
+            max="720"
+            step="1"
+            value="90"
+            inputmode="numeric"
+          />
+          <span class="unit">分钟</span>
+          <button id="saveLimit" type="submit">保存</button>
+        </form>
+        <p class="save-message" id="saveMessage" role="status"></p>
+      </section>
+
+      <div class="privacy-tools">
+        <button id="toggleTracking" type="button">暂停计时</button>
+        <button id="clearHistory" type="button">清除时长记录</button>
+      </div>
+      <footer>仅本地保存 · 保留最近 30 天</footer>
+    </main>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

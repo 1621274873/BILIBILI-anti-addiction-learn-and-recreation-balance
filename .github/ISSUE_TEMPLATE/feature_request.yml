@@ -1,0 +1,28 @@
+name: Feature request
+description: Propose a focused change to the extension.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: What task or problem should the change address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe what the user should see or be able to do.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Project boundaries
+      options:
+        - label: I have considered required permissions and local-data impact.
+          required: true
+        - label: This does not depend on account automation, ad blocking, or remote collection.
+          required: true
